@@ -1,4 +1,4 @@
-
+import { sendRequest } from "./dataAccess.js"
 
 const container = document.querySelector("#container")
 
@@ -22,11 +22,34 @@ export const ServiceForm = () => {
         <label class="label" for="serviceDate">Date needed</label>
         <input type="date" name="serviceDate" class="input fourthBox" />
     </div>
-`
-   // <button class="button" id="submitRequest">Submit Request</button>
+    <button class="button" id="submitRequest">Submit Request</button>
+    `
 
 
 
     return html
 }
 
+//Add the following event listener to the ServiceForm module. Read each line of code, discuss with your teammates, and see if you can understand what everything is doing. Make sure you write down any questions you have about the code for the review with the instruction team.
+const mainContainer = document.querySelector("#container")
+
+mainContainer.addEventListener("click", clickEvent => {
+    if (clickEvent.target.id === "submitRequest") {
+        // Get what the user typed into the form fields
+        const userDescription = document.querySelector("input[name='serviceDescription']").value
+        const userAddress = document.querySelector("input[name='serviceAddress']").value
+        const userBudget = document.querySelector("input[name='serviceBudget']").value
+        const userDate = document.querySelector("input[name='serviceDate']").value
+
+        // Make an object out of the user input
+        const dataToSendToAPI = {
+            description: userDescription,
+            address: userAddress,
+            budget: userBudget,
+            neededBy: userDate
+        }
+
+        // Send the data to the API for permanent storage
+        sendRequest(dataToSendToAPI)
+    }
+})
