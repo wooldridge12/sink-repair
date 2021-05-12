@@ -3,10 +3,10 @@
 const applicationState = {
     requests: [],
     orderBuilder: {
-        description: "",
-        address: "",
-        budget: "",
-        neededBy: ""
+        description: "Sup bruh",
+        address: "1800 getcash",
+        budget: 1000,
+        neededBy: "tomorrow"
     }
 
 }
@@ -41,31 +41,47 @@ export const setJobBudget = () => (budget) => {
 
 
 
-
-export const postRequest = (customerObject) => {
-    const newDate = new Date ()
-
-    const newRequestToBeCreated = {
-        jobDescription: applicationState.orderBuilder.description,
-        jobAddress: applicationState.orderBuilder.address,
-        jobBudget: applicationState.orderBuilder.budget,
-        finishDate: applicationState.orderBuilder.neededBy
+//Place the following function in your dataAccess.js module. The POST method on any HTTP request means "Hey API!! I want you to create something new!"
+export const sendRequest = (userServiceRequest) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userServiceRequest)
     }
 
-
-return fetch(`${apiURL}/orders`, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(newOrderToBeCreated)
-})
+    return fetch(`${API}/requests`, fetchOptions)
     .then(response => response.json())
     .then(() => {
 
     })
-
 }
+
+
+    // const newDate = new Date ()
+
+    // const newRequestToBeCreated = {
+    //     jobDescription: applicationState.orderBuilder.description,
+    //     jobAddress: applicationState.orderBuilder.address,
+    //     jobBudget: applicationState.orderBuilder.budget,
+    //     finishDate: applicationState.orderBuilder.neededBy
+    // }
+
+
+// return fetch(`${API}/requests`, {
+//     method: "POST",
+//     headers: {
+//         "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify(userServiceRequest)
+// })
+//     .then(response => response.json())
+//     .then(() => {
+
+//     })
+
+// }
 
 
 
