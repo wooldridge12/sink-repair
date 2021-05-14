@@ -10,7 +10,7 @@ const applicationState = {
     }
 
 }
-
+//You will need to store that external data in your application state when you fetch it. Create a property named requests in your application state object. Its initial value must be an empty array.
 const API = "http://localhost:8088"
 
 export const fetchRequests = () => {
@@ -40,8 +40,9 @@ export const setJobBudget = () => (budget) => {
 }
 
 
-
+//Before you get to saving new requests, you should list any previous requests. You are going to use a fetch() to get all existing requests and then list them in the UI.
 //Place the following function in your dataAccess.js module. The POST method on any HTTP request means "Hey API!! I want you to create something new!"
+const mainContainer = document.querySelector("#container")
 export const sendRequest = (userServiceRequest) => {
     const fetchOptions = {
         method: "POST",
@@ -54,7 +55,7 @@ export const sendRequest = (userServiceRequest) => {
     return fetch(`${API}/requests`, fetchOptions)
     .then(response => response.json())
     .then(() => {
-
+        mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
     })
 }
 
@@ -68,24 +69,20 @@ export const sendRequest = (userServiceRequest) => {
     //     finishDate: applicationState.orderBuilder.neededBy
     // }
 
-
-// return fetch(`${API}/requests`, {
-//     method: "POST",
-//     headers: {
-//         "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify(userServiceRequest)
-// })
-//     .then(response => response.json())
-//     .then(() => {
-
-//     })
-
-// }
+    //function whose responsiblity it is to initiate the fetch request for DELETE must have the primary key sent to it as an argument.
+export const deleteRequest = (id) => {
+    return fetch(`${API}/requests/${id}`, 
+    {method: "DELETE"})
+    .then(
+        () => {
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        }
+    )
+}
 
 
-
-
+//Define and export a function named getRequests that returns a copy of the requests state.
 export const getRequests = () => {
     return [...applicationState.requests]
 }
+

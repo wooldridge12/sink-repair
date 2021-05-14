@@ -1,6 +1,7 @@
 import { Requests } from "./Requests.js"
 import { ServiceForm } from "./ServiceForm.js"
-// import { SubmitRequestButton } from "./submitRequest.js"
+
+//Then import the HTML into the main module and interpolate it in the site structure.(the ServiceaForm import)
 
 export const SinkRepair = () => {
     return `

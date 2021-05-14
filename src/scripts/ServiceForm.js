@@ -3,7 +3,8 @@ import { sendRequest } from "./dataAccess.js"
 const container = document.querySelector("#container")
 
 
-
+//HTML input fields are how you collect user data. Time for you to define some fields to collect the information from a user that Maude and Merle want about a service request.
+//Then import the HTML into the main module and interpolate it in the site structure.sink-repair/src/scripts/SinkRepair.js
 export const ServiceForm = () => {
     let html = `
     <div class="field">
@@ -29,6 +30,9 @@ export const ServiceForm = () => {
 
     return html
 }
+
+
+
 
 //Add the following event listener to the ServiceForm module. Read each line of code, discuss with your teammates, and see if you can understand what everything is doing. Make sure you write down any questions you have about the code for the review with the instruction team.
 const mainContainer = document.querySelector("#container")

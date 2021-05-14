@@ -1,16 +1,34 @@
-import { getRequests } from "./dataAccess.js"
+//The function you write will convert each service request object into HTML representations. Since it is wrapped with a <ul> element, make each one an <li> element showing only the description of the request to start.
+import { getRequests, deleteRequest } from "./dataAccess.js"
 
+//adding delete button not sure if it is suppose to go here.
 
 export const Requests = () => {
     const requests = getRequests()
 
     let html = `
         <ul>
-            ${requests.map(convertRequestToListElement => {
-                return `<li>${convertRequestToListElement.description}</li>`
-            })}
+        ${requests.map(convertRequestToListElement => {
+                return `
+                <li>${convertRequestToListElement.description}
+                <button class="request__delete"id="request--${convertRequestToListElement.id}">
+                Delete
+                </button>
+                </li>
+                `
+            }).join("")}
         </ul>
     `
-
+    
     return html
 }
+
+
+const mainContainer = document.querySelector("#container")
+
+mainContainer.addEventListener("click", click => {
+    if (click.target.id.startsWith("request--")) {
+        const [,requestId] = click.target.id.split("--")
+        deleteRequest(parseInt(requestId))
+    }
+})
