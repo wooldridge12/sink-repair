@@ -1,7 +1,7 @@
 //The function you write will convert each service request object into HTML representations. Since it is wrapped with a <ul> element, make each one an <li> element showing only the description of the request to start.
 import { getRequests, deleteRequest } from "./dataAccess.js"
 
-//adding delete button not sure if it is suppose to go here.
+
 
 export const Requests = () => {
     const requests = getRequests()

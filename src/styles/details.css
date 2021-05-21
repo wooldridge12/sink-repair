@@ -12,10 +12,16 @@
     color: aliceblue;
     margin-top: 25px;
     margin-bottom: 5px;
+    border-radius: 8px;
 }
 .mainHeading {
     font-size: xx-large;
 }
 .serviceRequests {
     font-size: large;
+}
+.request__delete {
+    background-color: maroon;
+    color: aliceblue;
+    border-radius: 8px;
 }

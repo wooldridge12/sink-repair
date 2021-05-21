@@ -43,6 +43,7 @@ export const setJobBudget = () => (budget) => {
 //Before you get to saving new requests, you should list any previous requests. You are going to use a fetch() to get all existing requests and then list them in the UI.
 //Place the following function in your dataAccess.js module. The POST method on any HTTP request means "Hey API!! I want you to create something new!"
 const mainContainer = document.querySelector("#container")
+
 export const sendRequest = (userServiceRequest) => {
     const fetchOptions = {
         method: "POST",
